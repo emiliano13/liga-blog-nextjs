@@ -63,19 +63,22 @@ function SetQueryFilters() {
           )
         }}
       /> */}
-      <select
-        onChange={onChange}
-        className="form-select"
-        value={searchParams.get('cate') || ''}
-      >
-        <option value="todos">Todos</option>
-        {categories &&
-          categories.map((category) => (
-            <option value={category.slug} key={category.databaseId}>
-              {category.name}
-            </option>
-          ))}
-      </select>
+      <div className="flex flex-wrap items-center justify-center">
+        <div className="uppercase pr-2">Ver</div>
+        <select
+          onChange={onChange}
+          className="form-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value={searchParams.get('cate') || ''}
+        >
+          <option value="todos">Todos</option>
+          {categories &&
+            categories.map((category) => (
+              <option value={category.slug} key={category.databaseId}>
+                {category.name}
+              </option>
+            ))}
+        </select>
+      </div>
       {selectValue && <h2 className="mt-3">{selectValue}</h2>}
     </>
   )

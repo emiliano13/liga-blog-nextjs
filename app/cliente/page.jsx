@@ -134,39 +134,50 @@ function Cliente({searchParams}) {
         <SetQueryFilters />
       </Suspense>
 
-      <div className="flex flex-wrap gap-8">
+      {/* <div className="flex flex-wrap gap-8"> */}
+      <div className="grid grid-cols-4 gap-8">
         {newArticles &&
           newArticles.map((post) => (
-            <article className="w-72" key={post.databaseId}>
+            <article
+              className="w-1/4_ rounded overflow-hidden shadow-lg hover:shadow-2xl"
+              key={post.databaseId}
+            >
               <Image
+                className="w-full my-0"
                 alt={post.featuredImage?.node.altText}
                 height={post.featuredImage?.node.mediaDetails.height}
                 src={post.featuredImage?.node.sourceUrl}
                 width={post.featuredImage?.node.mediaDetails.width}
                 priority={true}
               />
-              <Link href={`/blog/${post.slug}`}>
-                <h2 dangerouslySetInnerHTML={{__html: post.title}} />
-              </Link>
-              <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
-              <Link className="button" href={`/blog/${post.slug}`}>
-                Ver Post
-              </Link>
+              <div class="px-6 py-2">
+                <Link href={`/blog/${post.slug}`}>
+                  <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+                </Link>
+                <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+              </div>
+              <div className="flex justify-end items-center">
+                <div>Share</div>
+                <Link className="button" href={`/blog/${post.slug}`}>
+                  Ver Post
+                </Link>
+              </div>
             </article>
           ))}
       </div>
-
-      {haveMorePosts ? (
-        <button
-          onClick={loadMore}
-          className="load-more bg-blue-400 text-slate-900 px-4 py-2 hover:bg-blue-500"
-          type="submit"
-        >
-          Ver más
-        </button>
-      ) : (
-        <p>✅ Todas las entradas han sido cargadas.</p>
-      )}
+      <div className="flex flex-wrap items-center justify-center mt-8">
+        {haveMorePosts ? (
+          <button
+            onClick={loadMore}
+            className="load-more bg-blue-400 text-slate-900 px-4 py-2.5 hover:bg-blue-500"
+            type="submit"
+          >
+            Ver más noticias
+          </button>
+        ) : (
+          <p>✅ Todas las entradas han sido cargadas.</p>
+        )}
+      </div>
     </div>
   )
 }
