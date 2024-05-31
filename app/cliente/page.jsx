@@ -10,6 +10,9 @@ import {gql, NetworkStatus} from '@apollo/client'
 import {useSuspenseQuery} from '@apollo/experimental-nextjs-app-support/ssr'
 import {useState, useEffect, use} from 'react'
 import React from 'react'
+import shareIcon from '@/public/share.svg'
+import xIcon from '@/public/x-twitter.svg'
+import linkedinIcon from '@/public/linkedin.svg'
 
 const CATEGORIES_QUERY = gql`
   query NewQuery {
@@ -157,7 +160,30 @@ function Cliente({searchParams}) {
                 <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
               </div>
               <div className="flex justify-end items-center">
-                <div>Share</div>
+                <div className="flex justify-end items-center">
+                  <Image
+                    className="m-0"
+                    priority
+                    src={linkedinIcon}
+                    width={28}
+                    alt="Compartir en Linkedin"
+                  />
+                  <Image
+                    className="m-0"
+                    priority
+                    src={xIcon}
+                    width={28}
+                    alt="Compartir en X"
+                  />
+                </div>
+                <Image
+                  priority
+                  src={shareIcon}
+                  width={32}
+                  alt="Compartir"
+                  className="m-0"
+                />
+
                 <Link className="button" href={`/blog/${post.slug}`}>
                   Ver Post
                 </Link>
