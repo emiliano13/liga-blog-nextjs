@@ -10,9 +10,7 @@ import {gql, NetworkStatus} from '@apollo/client'
 import {useSuspenseQuery} from '@apollo/experimental-nextjs-app-support/ssr'
 import {useState, useEffect, use} from 'react'
 import React from 'react'
-import shareIcon from '@/public/share.svg'
-import xIcon from '@/public/x-twitter.svg'
-import linkedinIcon from '@/public/linkedin.svg'
+import ShareButtons from '@/components/ShareButtons'
 
 const CATEGORIES_QUERY = gql`
   query NewQuery {
@@ -52,6 +50,12 @@ const GET_QUERY = gql`
             mediaDetails {
               height
               width
+              sizes {
+                height
+                name
+                width
+                sourceUrl
+              }
             }
           }
         }
@@ -148,46 +152,22 @@ function Cliente({searchParams}) {
               <Image
                 className="w-full my-0"
                 alt={post.featuredImage?.node.altText}
-                height={post.featuredImage?.node.mediaDetails.height}
-                src={post.featuredImage?.node.sourceUrl}
-                width={post.featuredImage?.node.mediaDetails.width}
+                // height={post.featuredImage?.node.mediaDetails.height}
+                // src={post.featuredImage?.node.sourceUrl}
+                // width={post.featuredImage?.node.mediaDetails.width}
+                height={post.featuredImage?.node.mediaDetails.sizes[0].height}
+                src={post.featuredImage?.node.mediaDetails.sizes[0].sourceUrl}
+                width={post.featuredImage?.node.mediaDetails.sizes[0].width}
                 priority={true}
               />
-              <div class="px-6 py-2">
+              <div className="px-6 py-2">
                 <Link href={`/blog/${post.slug}`}>
                   <h2 dangerouslySetInnerHTML={{__html: post.title}} />
                 </Link>
                 <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
               </div>
-              <div className="flex justify-end items-center">
-                <div className="flex justify-end items-center">
-                  <Image
-                    className="m-0"
-                    priority
-                    src={linkedinIcon}
-                    width={28}
-                    alt="Compartir en Linkedin"
-                  />
-                  <Image
-                    className="m-0"
-                    priority
-                    src={xIcon}
-                    width={28}
-                    alt="Compartir en X"
-                  />
-                </div>
-                <Image
-                  priority
-                  src={shareIcon}
-                  width={32}
-                  alt="Compartir"
-                  className="m-0"
-                />
 
-                <Link className="button" href={`/blog/${post.slug}`}>
-                  Ver Post
-                </Link>
-              </div>
+              <ShareButtons post={post} />
             </article>
           ))}
       </div>

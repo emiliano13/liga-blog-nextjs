@@ -63,7 +63,7 @@ function SetQueryFilters() {
           )
         }}
       /> */}
-      <div className="flex flex-wrap items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center mb-8">
         <div className="uppercase pr-2">Ver</div>
         <select
           onChange={onChange}
@@ -79,7 +79,7 @@ function SetQueryFilters() {
             ))}
         </select>
       </div>
-      {selectValue && <h2 className="mt-3">{selectValue}</h2>}
+      {/* {selectValue && <h2 className="mt-3">{selectValue}</h2>} */}
     </>
   )
 }

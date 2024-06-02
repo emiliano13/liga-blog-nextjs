@@ -30,4 +30,38 @@
     @apply bg-zinc-200 text-zinc-900 dark:bg-zinc-400;
     @apply hover:bg-zinc-300 dark:hover:bg-zinc-500;
   }
+
+  /* SHARE BUTTONS*/
+  .share-wrapper {
+    width: auto;
+    height: 50px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    color: black;
+
+    justify-content: flex-end;
+  }
+  .share-wrapper:hover > div:first-child {
+    opacity: 1;
+    transform: translateX(0px);
+    width: auto;
+  }
+  .share-wrapper:hover {
+    width: auto;
+  }
+  .share {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    cursor: pointer;
+
+    vertical-align: top;
+    text-align: center;
+    margin: 0px;
+    transition: all 0.2s ease 0s;
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
