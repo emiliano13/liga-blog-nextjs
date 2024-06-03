@@ -193,7 +193,7 @@ export default async function Post({params}: {params: {slug: string}}) {
       <div className="col-2 p-2">
         <div className="grid grid-cols-1 gap-8">
           {data &&
-            data.posts.nodes.map((latestPost) => (
+            data.posts.nodes.map((latestPost: any) => (
               <article
                 className="w-1/4_ rounded overflow-hidden shadow-lg hover:shadow-2xl"
                 key={latestPost.databaseId}
